@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Listado de Usuarios</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-4">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h2>Bienvenido, <span th:text="${nombreUsuario}">Usuario</span></h2>
+			<div>
+				<button class="btn btn-danger" onclick="logout()">Cerrar Sesión</button>
+				<button class="btn btn-primary" onclick="agregarUsuario()">Agregar Usuario</button>
+				<button class="btn btn-secondary" onclick="generarPDF()">Generar PDF</button>
+			</div>
+		</div>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Correo</th>
+					<th>Password</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Fecha Nacimiento</th>
+					<th>Imagen</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="usuario : ${lista_usuarios}">
+					<td th:text="${usuario.correo}"></td>
+					<td th:text="'*****'"></td>
+					<td th:text="${usuario.nombre}"></td>
+					<td th:text="${usuario.apellido}"></td>
+					<td th:text="${usuario.fechaNacimiento}"></td>
+					<td>
+						<img th:src="${usuario.urlImagen}" alt="Imagen de [[${usuario.nombre}]]"
+							style="width: 100px; height: auto;" />
+					</td>
+					<td>
+						<a th:href="@{/usuarios/detalle_usuario/{id}(id=${usuario.correo})}"
+							class="btn btn-info btn-sm">Ver</a>
+						<a th:href="@{/usuarios/editar_usuario/{id}(id=${usuario.correo})}"
+							class="btn btn-warning btn-sm">Editar</a>
+						<a th:href="@{/usuarios/delete/{id}(id=${usuario.correo})}"
+							class="btn btn-danger btn-sm">Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.2.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script>
+		function logout() {
+			alert('Cerrando sesión...');
+			window.location.href = "/login";  // Cambia la URL según sea necesario
+		}
+
+		function agregarUsuario() {
+			alert('Redirigiendo a agregar usuario...');
+			window.location.href = "/usuarios/registrar_usuario";  // Cambia la URL según sea necesario
+		}
+
+		function generarPDF() {
+			alert('Generando PDF...');
+			window.location.href = "/usuarios/generarUsuario_pdf";  // Cambia la URL según sea necesario
+		}
+	</script>
+</body>
+
+</html>

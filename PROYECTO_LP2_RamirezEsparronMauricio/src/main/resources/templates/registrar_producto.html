@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Registrar Producto</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h1>Registrar Nuevo Producto</h1>
+		<form th:action="@{/productos/registrar_producto}" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="nombre">Nombre</label>
+				<input type="text" id="nombre" name="nombre" class="form-control" required />
+			</div>
+
+			<div class="form-group">
+				<label for="precio">Precio</label>
+				<input type="number" id="precio" name="precio" class="form-control" required />
+			</div>
+			<div class="form-group">
+				<label for="stock">Stock</label>
+				<input type="number" id="stock" name="stock" class="form-control" required />
+			</div>
+			<div class="form-group">
+				<label for="categoriaProducto">Categoria Producto</label>
+				<select id="categoriaProducto" name="categoriaProducto" class="form-control" required>
+					<option value="" disabled selected>Selecciona una categoria</option>
+					<option th:each="categoria : ${listarCategoriaProducto}" th:value="${categoria.id}"
+						th:text="${categoria.nombre}"></option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Registrar Producto</button>
+		</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

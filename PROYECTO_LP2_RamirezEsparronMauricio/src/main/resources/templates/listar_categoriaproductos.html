@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Listado de Categorías</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-4">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h2>Bienvenido, <span th:text="${nombre_usuario}">Usuario</span></h2>
+			<div>
+				<button class="btn btn-danger" th:onclick="'logout()'">Cerrar Sesión</button>
+				<button class="btn btn-primary" th:onclick="'agregarCategoria()'">Agregar Categoría</button>
+				<button class="btn btn-secondary" th:onclick="'generarPDF()'">Generar PDF</button>
+			</div>
+		</div>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Productos</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="categoria : ${categorias}">
+					<td th:text="${categoria.productoId}"></td>
+					<td th:text="${categoria.nombre}"></td>
+					<td>
+						<ul>
+							<li th:each="producto : ${categoria.productos}" th:text="${producto.nombre}"></li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.2.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script>
+		function logout() {
+			// Lógica para cerrar sesión
+			alert('Cerrando sesión...');
+			// Redirigir a la página de inicio de sesión o realizar la acción correspondiente
+		}
+
+		function agregarCategoria() {
+			// Lógica para agregar una categoría
+			alert('Redirigiendo a agregar categoría...');
+			// Redirigir a la página de agregar categoría
+		}
+
+		function generarPDF() {
+			// Lógica para generar PDF
+			alert('Generando PDF...');
+			// Implementar la lógica para generar el PDF
+		}
+	</script>
+</body>
+
+</html>

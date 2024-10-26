@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gestión de Productos</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		body {
+			background-image: url('/img/img1.jpg');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			font-family: 'Helvetica Neue', 'Arial', sans-serif;
+			margin: 0;
+			color: (255, 255, 255, 0.9);
+			padding: 0;
+			padding-top: 56px;
+			/* Espacio para la cabecera fija */
+		}
+
+		/* Efecto escalera para el menú desplegable */
+		.dropdown-menu {
+			animation: fadeIn 0.3s ease-in-out;
+			display: none;
+			/* Ocultar inicialmente */
+			position: absolute;
+			/* Posicionar absolutamente */
+			left: 0;
+			/* Colocar alineado a la izquierda */
+			top: 100%;
+			/* Justo debajo del elemento padre */
+			z-index: 1000;
+			/* Asegurar que esté en la parte superior */
+		}
+
+		/* Mostrar el menú al pasar el ratón sobre el elemento padre */
+		.nav-item.dropdown:hover .dropdown-menu {
+			display: block;
+			/* Mostrar al pasar el ratón */
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(-10px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* Transiciones suaves para los elementos del menú */
+		.dropdown-item {
+			transition: background-color 0.3s ease;
+		}
+
+		.dropdown-item:hover {
+			background-color: #f8f9fa;
+			/* Color de fondo al pasar el ratón */
+		}
+
+		/* Estilos para los submenús */
+		.dropdown-submenu {
+			position: relative;
+			/* Para posicionar el submenú */
+		}
+
+		.dropdown-submenu .dropdown-menu {
+			left: 100%;
+			/* Mostrar a la derecha del elemento padre */
+			top: 0;
+			/* Alineado con el elemento padre */
+			margin-top: -1px;
+			/* Para que no haya espacio entre los menús */
+		}
+
+		/* Mostrar el submenú al pasar el ratón sobre el elemento padre */
+		.dropdown-submenu:hover .dropdown-menu {
+			display: block;
+			/* Mostrar al pasar el ratón */
+		}
+
+		.pintar {
+			color: rgba(255, 255, 255, 0.9);
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Mi Aplicación</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">
+						Listado
+					</a>
+
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/cuentas/">cuentas</a>
+						<a class="dropdown-item" href="/tarjetas/">tarjetas</a>
+						<a class="dropdown-item" href="/usuarios/">usuarios</a>
+						<a class="dropdown-item" href="/operaciones/">operaciones</a>
+						<a class="dropdown-item" href="/auditorias/">auditoria</a>
+					</div>
+
+					<div class="dropdown-divider"></div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">
+						Registro
+					</a>
+
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/cuentas/registrar_cuenta">cuenta</a>
+						<a class="dropdown-item" href="/tarjetas/registrar_tarjeta">tarjeta</a>
+						<a class="dropdown-item" href="/usuarios/registrar_usuario">usuario</a>
+						<a class="dropdown-item" href="/operaciones/registrar_operacion">operacion</a>
+					</div>
+					<div class="dropdown-divider"></div>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">
+						Editar
+					</a>
+
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/cuentas/editar_cuenta">cuentas</a>
+						<a class="dropdown-item" href="/tarjetas/editar_tarjeta">tajetas</a>
+						<a class="dropdown-item" href="/usuarios/listar_usuario">usuarios</a>
+						<a class="dropdown-item" href="/operaciones/editar_operacion">operaciones</a>
+					</div>
+
+					<div class="dropdown-divider"></div>
+				</li>
+		</div>
+
+
+		<li class="nav-item">
+			<a class="nav-link" href="#">Log </a>
+		</li>
+		</ul>
+		</div>
+	</nav>
+
+	<div class="container mt-4">
+		<h1 class="pintar">Bienvenido, <span th:text="${usuario}"> a la Gestión de datos Bancarios</h1>
+
+		<p class="pintar">Selecciona una opción del menú para continuar.</p>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

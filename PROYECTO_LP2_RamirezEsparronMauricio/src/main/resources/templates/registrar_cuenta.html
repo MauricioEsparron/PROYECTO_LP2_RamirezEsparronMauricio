@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, content-scale=1.0">
+	<title>Registro de Cuentas</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container">
+		<h2>Registro de Cuentas</h2>
+		<form th:action="@{/cuentas/registrar_cuenta}" method="post">
+
+			<div class="form-group">
+				<label for="fechaApertura">Fecha de Apertura</label>
+				<input type="date" class="form-control" id="fechaApertura" name="fechaApertura" required readonly>
+			</div>
+			<div class="form-group">
+				<label for="numeroCuenta">Número de Cuenta</label>
+				<input type="text" class="form-control" id="numeroCuenta" name="numeroCuenta" maxlength="15" required
+					readonly>
+			</div>
+			<div class="form-group">
+				<label for="saldo">Saldo</label>
+				<input type="number" class="form-control" id="saldo" name="saldo" step="0.01" required>
+			</div>
+			<div class="form-group">
+				<label for="cliente">Usuario</label>
+				<select class="form-control" id="cliente" name="cliente" required>
+					<option value="">Seleccione un Usuario</option>
+					<option th:each="usuario : ${listarUsuario}" th:value="${usuario.correo}"
+						th:text="${usuario.nombre} + ' ' + ${usuario.apellido}"></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="estadoCuenta">Estado de Cuenta</label>
+				<select class="form-control" id="estadoCuenta" name="estadoCuenta" required>
+					<option value="">Seleccione un estado de cuenta</option>
+					<option th:each="estado : ${listarEstadoCuenta}" th:value="${estado.id}"
+						th:text="${estado.descripcion}"></option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="tipoCuenta">Tipo de Cuenta</label>
+				<select class="form-control" id="tipoCuenta" name="tipoCuenta" required>
+					<option value="">Seleccione un tipo de cuenta</option>
+					<option th:each="tipo : ${listarTipoCuenta}" th:value="${tipo.id}" th:text="${tipo.descripcion}">
+					</option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Registrar Cuenta</button>
+		</form>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<script>
+		// Establecer la fecha actual por defecto en el campo de fecha de apertura
+		window.onload = function () {
+			var today = new Date().toISOString().split('T')[0];
+			document.getElementById("fechaApertura").value = today;
+
+			// Generar un número de cuenta aleatorio de 15 dígitos
+			var numeroCuenta = Math.floor(100000000000000 + Math.random() * 900000000000000);
+			document.getElementById("numeroCuenta").value = numeroCuenta;
+		}
+	</script>
+</body>
+
+</html>

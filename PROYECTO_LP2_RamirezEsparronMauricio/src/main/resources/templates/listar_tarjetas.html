@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lista de Tarjetas</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container">
+		<h2>Lista de Tarjetas</h2>
+		<a th:href="@{/tarjetas/registrar_tarjeta}" class="btn btn-primary">Registrar Tarjeta</a>
+
+		<table class="table mt-4">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Número de Tarjeta</th>
+					<th>Fecha de Vencimiento</th>
+					<th>CVV</th>
+					<th>Tipo de Tarjeta</th>
+					<th>Estado</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tarjeta : ${lista_tarjetas}">
+					<td th:text="${tarjeta.tarjetaId}"></td>
+					<td th:text="${tarjeta.numeroTarjeta}"></td>
+					<td th:text="${tarjeta.fechaVencimiento}"></td>
+					<td th:text="${tarjeta.cvv}"></td>
+					<td th:text="${tarjeta.tipoTarjeta.descripcion}"></td>
+					<!-- Asegúrate de que 'descripcion' sea un campo válido en TipoTarjetaEntity -->
+					<td th:text="${tarjeta.estadoTarjeta.descripcion}"></td>
+					<td>
+						<a th:href="@{/tarjetas/detalle_tarjeta/{id}(id=${tarjeta.tarjetaId})}"
+							class="btn btn-info">Ver</a> |
+						<a th:href="@{/tarjetas/editar_tarjeta/{id}(id=${tarjeta.tarjetaId})}"
+							class="btn btn-warning">Editar</a> |
+						<a th:href="@{/tarjetas/delete_tarjeta/{id}(id=${tarjeta.tarjetaId})}"
+							class="btn btn-danger">Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

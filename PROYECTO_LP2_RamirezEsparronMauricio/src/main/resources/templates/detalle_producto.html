@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Detalle del Producto</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: #f8f9fa;
+		}
+
+		.card {
+			margin: auto;
+			max-width: 600px;
+		}
+
+		.img-fluid {
+			max-height: 300px;
+			object-fit: cover;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h2 class="text-center mb-4">Detalle del Producto</h2>
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">Información del Producto</h5>
+				<p><strong>ID:</strong> <span th:text="${producto.productoId}"></span></p>
+				<p><strong>Nombre:</strong> <span th:text="${producto.nombre}"></span></p>
+				<p><strong>Precio:</strong> <span
+						th:text="${producto.precio != null ? producto.precio : 'No especificado'}"></span></p>
+				<p><strong>Stock:</strong> <span th:text="${producto.stock}"></span></p>
+				<p><strong>Categoría:</strong> <span th:text="${producto.categoriaProducto.nombre}"></span></p>
+			</div>
+		</div>
+		<div class="mt-3 text-center">
+			<a href="/productos/" class="btn btn-primary">Volver a la Lista</a>
+			<a th:href="@{/productos/editar_producto/{id}(id=${producto.productoId})}" class="btn btn-secondary">Editar
+				Producto</a>
+			<a th:href="@{/productos/delete/{id}(id=${producto.productoId})}" class="btn btn-danger"
+				onclick="return confirm('¿Estás seguro de eliminar este producto?');">Eliminar Producto</a>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
